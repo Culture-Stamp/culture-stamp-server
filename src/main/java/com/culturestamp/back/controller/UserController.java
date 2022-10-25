@@ -18,7 +18,8 @@ public class UserController {
     // TODO: final 문의
     @GetMapping("/{userId}")
     public UserResponse getUserById(@PathVariable String userId) {
-        System.out.println(userServiceImpl.getUserById(Long.valueOf(userId)));
+        // for Conflict Test
+        //System.out.println(userServiceImpl.getUserById(Long.valueOf(userId)));
         return userServiceImpl.getUserById(Long.valueOf(userId));
     }
 
