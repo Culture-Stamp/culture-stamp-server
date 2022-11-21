@@ -82,7 +82,7 @@ public class CategoryControllerTest {
 			.reviewCount(category.getReviewCount())
 			.user(category.getUser())
 			.build();
-
+		//
 		//when
 		mockMvc.perform(MockMvcRequestBuilders
 				.post("/category")
