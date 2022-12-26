@@ -1,21 +1,24 @@
 package com.culturestamp.back.controller.request;
 
+import com.culturestamp.back.entity.Category;
 import com.culturestamp.back.entity.User;
-
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @Builder
+@NoArgsConstructor
 public class CategoryRequest {
 	private String categoryName;
-	private String reviewCount;
-	private Long userId;
+	private Long reviewCount;
+	private User user;
 
-	public CategoryRequest(String categoryName, String reviewCount, Long userId) {
+	@Builder
+	public CategoryRequest(String categoryName, Long reviewCount, User user) {
 		this.categoryName = categoryName;
 		this.reviewCount = reviewCount;
-		this.userId = userId;
+		this.user = user;
 	}
 
 	public String getCategoryName() {
@@ -26,20 +29,29 @@ public class CategoryRequest {
 		this.categoryName = categoryName;
 	}
 
-	public String getReviewCount() {
+	public Long getReviewCount() {
 		return reviewCount;
 	}
 
-	public void setReviewCount(String reviewCount) {
+	public void setReviewCount(Long reviewCount) {
 		this.reviewCount = reviewCount;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
+	public Category toEntity(CategoryRequest categoryRequest) {
+		return Category.builder()
+			.categoryName(categoryRequest.categoryName)
+			.reviewCount(categoryRequest.reviewCount)
+			.user(categoryRequest.user)
+			.build();
+	}
+
 }
 

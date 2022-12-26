@@ -5,12 +5,7 @@ import com.culturestamp.back.entity.Review;
 import com.culturestamp.back.entity.User;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Builder

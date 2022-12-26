@@ -1,36 +1,40 @@
+const clientId = '398701196846-1n8sr22rc55etti1cedf9qvnaovpfb4q.apps.googleusercontent.com';
+const redirectUri = 'http://localhost:8080/oauth/login/google';
+
 /*
- * Create form to request access token from Google's OAuth 2.0 server.
- */
-var redirectUri = 'http://localhost:8080/login/oauth2/code/google';
-function oauthSignIn() {
-  // Google's OAuth 2.0 endpoint for requesting an access token
-  var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+* Create form to request access token from Google's OAuth 2.0 server.
+*/
+function oauth2SignIn() {
+// Google's OAuth 2.0 endpoint for requesting an access token
+//var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/v2/auth';
+var oauth2Endpoint = 'https://accounts.google.com/o/oauth2/auth';
 
+// Create element to open OAuth 2.0 endpoint in new window.
+var form = document.createElement('form');
+form.setAttribute('method', 'GET'); // Send as a GET request.
+form.setAttribute('action', oauth2Endpoint);
 
-  // Create <form> element to submit parameters to OAuth 2.0 endpoint.
-  var form = document.createElement('form');
-  form.setAttribute('method', 'GET'); // Send as a GET request.
-  form.setAttribute('action', oauth2Endpoint);
+// Parameters to pass to OAuth 2.0 endpoint.
+var params = {'client_id': clientId,
+              'redirect_uri': redirectUri,
+              'include_granted_scopes': 'true',
+              'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
+              'response_type': 'code',
+              'access_type': 'offline',
+              'state': 'state_parameter_passthrough_value'};
 
-  // Parameters to pass to OAuth 2.0 endpoint.
-  var params = {'client_id': '398701196846-1n8sr22rc55etti1cedf9qvnaovpfb4q.apps.googleusercontent.com',
-                'redirect_uri': redirectUri,
-                'response_type': 'code',
-                'include_granted_scopes': 'true',
-                'state':'state_parameter_passthrough_value',
-                'scope': 'https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email',
-                'prompt': 'select_account'};
+    // Add form parameters as hidden input values.
+    for (var p in params) {
+        var input = document.createElement('input');
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('name', p);
+        input.setAttribute('value', params[p]);
+        form.appendChild(input);
+    }
 
-  // Add form parameters as hidden input values.
-  for (var p in params) {
-    var input = document.createElement('input');
-    input.setAttribute('type', 'hidden');
-    input.setAttribute('name', p);
-    input.setAttribute('value', params[p]);
-    form.appendChild(input);
-  }
-
-  // Add form to page and submit it to open the OAuth 2.0 endpoint.
-  document.body.appendChild(form);
-  form.submit();
+    // Add form to page and submit it to open the OAuth 2.0 endpoint.
+    document.body.appendChild(form);
+    form.submit();
 }
+
+
