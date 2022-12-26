@@ -1,4 +1,4 @@
 package com.culturestamp.back.controller;
 
-public class TagController {
+public class OAuthController {
 }

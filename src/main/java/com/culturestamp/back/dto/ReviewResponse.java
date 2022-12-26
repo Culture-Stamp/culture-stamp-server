@@ -1,15 +1,17 @@
 package com.culturestamp.back.dto;
 
+import com.culturestamp.back.controller.request.ReviewRequest;
 import com.culturestamp.back.entity.Category;
 import com.culturestamp.back.entity.Review;
 import com.culturestamp.back.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
+@Builder
+@AllArgsConstructor
 public class ReviewResponse {
     private final Long reviewId;
     private final Category category;
@@ -22,6 +24,7 @@ public class ReviewResponse {
     private final String content;
     private final int price;
 
+    @Builder
     public ReviewResponse(Review review) {
         this.reviewId = review.getId();
         this.category = review.getCategory();
@@ -33,20 +36,6 @@ public class ReviewResponse {
         this.rating = review.getRating();
         this.content = review.getContent();
         this.price = review.getPrice();
-    }
-
-    @Builder
-    public ReviewResponse(Long reviewId, Category category, User user, String title, LocalDateTime performedDate, String location, String companion, int rating, String content, int price) {
-        this.reviewId = reviewId;
-        this.category = category;
-        this.user = user;
-        this.title = title;
-        this.performedDate = performedDate;
-        this.location = location;
-        this.companion = companion;
-        this.rating = rating;
-        this.content = content;
-        this.price = price;
     }
 
 }

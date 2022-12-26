@@ -1,25 +1,26 @@
 # 📕 Culture-Stamp
 ## 소개
-나만의 문화 생활 기록장
+어떤 서비스인지 왜 만들었는지 
 ## 핵심 기능
 1. 리뷰 작성
 2. TODO
-3. 태그 기능
-4. 월별 통계 그래프
-5. 연말 결산 그래프
-
-## 애플리케이션 (Language & Framework)
-- Language - Java 17
-- Framework - Spring Framework (Spring Boot, Spring MVC, Spring Security)
-- Data - JPA/Hibernate, Mysql
-- Test - Junit5, Spring Test, Mockito, SpringMockK
-- Build Tool - Gradle
+등등
+## 기술 스택
+- Spring Boot 2.7.4
+- Spring Data JPA
+- Spring Security
+- Mysql
+- Java 17
+## System Architecture
+만들기
 ## ERD
-
-<img src="https://user-images.githubusercontent.com/64303211/199386771-13be3acb-a7c1-4db1-80fb-864fa1add3c5.png" width="2500" />
-
+https://www.erdcloud.com/d/m8boRe8K52ZSq7uua -> 정하기
 ## Diagram
-<img src="https://user-images.githubusercontent.com/64303211/194745216-5cbaef59-4aef-4636-9e22-4107c5d89a3f.jpeg" width="80%" height="60%"/>
+
+![culturestamp](https://user-images.githubusercontent.com/64303211/194745216-5cbaef59-4aef-4636-9e22-4107c5d89a3f.jpeg)
+
+
+
 
 ## CONVENTION
 

@@ -9,32 +9,54 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
 public class Tag {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "tag_id")
-	private Long id;
+	private Long tagId;
 
 	@Column(name = "tag_name")
 	private String tagName;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="review_id")
-	private Review review;
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name="review_id")
+	// private Review review; // Review로 변경 필요
 
-	@Builder
-	public Tag(Long id, String tagName, Review review) {
-		this.id = id;
-		this.tagName = tagName;
-		this.review = review;
+	public Tag() {
+
 	}
+
+	public Tag(Long tagId, String tagName) {
+		this.tagId = tagId;
+		this.tagName = tagName;
+	}
+
+	public Long getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(Long tagId) {
+		this.tagId = tagId;
+	}
+
+	public String getTagName() {
+		return tagName;
+	}
+
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
+	}
+
+	// public Review getReview() {
+	// 	return review;
+	// }
+	//
+	// public void setReview(Review review) {
+	// 	this.review = review;
+	// }
 }

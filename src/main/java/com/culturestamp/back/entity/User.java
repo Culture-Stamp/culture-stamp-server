@@ -1,14 +1,16 @@
 package com.culturestamp.back.entity;
 
-import com.culturestamp.back.dto.UserServiceResponse;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -20,22 +22,12 @@ public class User extends BaseTimeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
-    // TODO: UNIQUE 설정. email을 의미할 수도 있음
-    @Column(unique = true, length=64)
-//    @Size(max = 100)
-    private String loginId;
-
     @Column
     private String nickname;
-
-    // TODO: added, needed to explain
-    @Column
-    private String providerType;
 
     @Column(nullable = false)
     private String email;
 
-    // TODO: edited, needed to explain
     @Column
     private String password;
 
@@ -43,52 +35,22 @@ public class User extends BaseTimeEntity implements Serializable {
     @Column(nullable = false)
     private Role role;
 
-    // TODO: 변경 설명(RESPONSE 까지)
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLoginAt;
 
-    @Column
-    private int failCount;
-
-//    @Builder
-//    public User(String nickname, String loginId, ProviderType providerType, String email, String password, RoleType role, LocalDateTime lastLoginAt, int failCount) {
-//        this.nickname = nickname;
-//        this.loginId = loginId;
-//        this.providerType = providerType;
-//        //  this.providerId = providerId;
-//        this.email = email;
-//        this.password = password;
-//        this.role = role;
-//        this.lastLoginAt = lastLoginAt;
-//        this.failCount = failCount;
-//    }
-
-
-    public User(UserServiceResponse userServiceResponse) {
-        this.userId = userServiceResponse.getUserId();
-        this.role = Role.USER;
-        this.loginId = userServiceResponse.getLoginId();
-        this.nickname = userServiceResponse.getNickname();
-        this.providerType = userServiceResponse.getProviderType();
-        this.email = userServiceResponse.getEmail();
-        this.password = userServiceResponse.getPassword();
-        this.lastLoginAt = userServiceResponse.getLastLoginAt();
-        this.failCount = userServiceResponse.getFailCount();
-    }
-
-
-    public User(String nickname, String email) {
-        this.nickname = nickname;
+    @Builder
+    public User(String email, String password, Role role) {
         this.email = email;
+        this.password = password;
+        this.role = role;
     }
-
 
     public User update(String name) {
         this.nickname = name;
         return this;
     }
 
-    public String getRole() {
+    public String getRoleKey() {
         return this.role.getKey();
     }
 
